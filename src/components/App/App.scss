@@ -1,0 +1,12 @@
+.app-cont {
+    width: 100vw;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+
+    .event-cont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
