@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {v4} from 'uuid';
 
 import './App.scss';
 
@@ -8,11 +9,19 @@ import Event from '../../classes/Event';
 
 export default function App() {
     const [selectedGame, setSelectedGame] = useState(-1);
+    const [users, setUsers] = useState([]);
 
-    const u1 = new User(0, 'Ivan', 'Ivanov');
+    useEffect(() => {
+        const members = [];
+        for (let i = 0; i < 15; i++) {
+            const user = new User(v4(), `User`, `${i}`);
+            members.push(user);
+        }
+        setUsers(members);
+    }, []);
 
     const events = [
-        new Event('volleyball', 'Изумруд', '25 сентября 2020, 19:00', Array(14).fill(u1, 0, 14), 14, 230),
+        new Event('volleyball', 'Изумруд', '25 сентября 2020, 19:00', users, 14, 230),
         // new Event('volleyball', 'Колледж', '26 сентября 2020, 19:00', Array(12).fill(u1, 0, 12), 14, 200)
     ];
 
@@ -20,12 +29,18 @@ export default function App() {
         if (id === selectedGame) setSelectedGame(-1);
         else setSelectedGame(id);
     }
+    const deleteMember = (uuid) => {
+        const index = users.findIndex(u => u.id === uuid);
+        const newUsers = [...users.slice(0, index), ...users.slice(index + 1)];
+        setUsers(newUsers);
+    }
 
     const eventCards = events.map((e, id) => 
         <EventCard key={id} 
                    id={id}
                    event={e}
                    onClick={onClick}
+                   deleteMember={deleteMember}
                    selected={id === selectedGame}>
         </EventCard>
     );

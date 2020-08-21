@@ -7,22 +7,26 @@ import CardTitle from './CardTitle/CardTitle';
 import Members from './Members/Members';
 
 export default function EventCard(props) {
-    const {event, onClick, selected, id} = props;
+    const {event, selected, id, onClick, deleteMember} = props;
+    console.log(event.members);
 
     return (
         <div className={`card-cont${selected ? ' selected' : ''}`}>
             <CardTitle event={event}
                        onClick={onClick}
-                       id={id}></CardTitle>
-                <div className='members-wrapper'>
-                    <CSSTransition
-                        in={selected}
-                        unmountOnExit
-                        timeout={400}
-                        classNames='members'>
-                            <Members members={event.members} maxMembers={event.maxMembers}></Members>
-                    </CSSTransition>
-                </div>
+                       id={id}>                           
+            </CardTitle>
+            <div className='members-wrapper'>
+                <CSSTransition
+                    in={selected}
+                    unmountOnExit
+                    timeout={400}
+                    classNames='members'>
+                        <Members deleteMember={deleteMember}
+                                 members={event.members} 
+                                 maxMembers={event.maxMembers}></Members>
+                </CSSTransition>
+            </div>
         </div>
     );
 }

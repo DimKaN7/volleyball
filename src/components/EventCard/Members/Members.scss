@@ -29,8 +29,7 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            // justify-content: space-between;
-            // border-bottom: 1px solid #EBEDEE;
+            border-radius: 5px;
 
             .member-id {
                 margin-right: 5px;
@@ -40,6 +39,19 @@
                 margin-left: 5px;
                 width: 15px;
                 flex: 0 0 15px;
+                cursor: pointer;
+            }
+        }
+
+        .free {
+            @extend .member;
+            opacity: 0.5;
+            color: green;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                opacity: 1;
                 cursor: pointer;
             }
         }
