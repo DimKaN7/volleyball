@@ -10,32 +10,35 @@
     }
 
     .card-info {
-        flex: 0 1 210px;
+        flex: 0 0 210px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
-        div {
+        .card-info-part {
             display: flex;
             flex-direction: row;
             padding-bottom: 5px;
+            position: relative;
+
             &:last-child {
                 padding-bottom: 0px;
             }
 
             img {
+                margin-right: 5px;
                 width: 20px;
                 height: 20px;
             }
 
-            span {
-                padding-left: 5px;
+            > span {
                 white-space: nowrap;
             }
         }
     }
 
     .card-icon {
+        margin-left: 10px;
         flex: 0 1 80px;
         display: flex;
         align-items: center;
@@ -44,5 +47,11 @@
             object-fit: contain;
             width: 100%;
         }
+    }
+}
+
+@media (max-width: 420px) {
+    .card-info {
+        width: 70%;
     }
 }

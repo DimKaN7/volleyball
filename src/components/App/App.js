@@ -3,6 +3,7 @@ import {v4} from 'uuid';
 
 import './App.scss';
 
+import Header from '../Header/Header';
 import EventCard from '../EventCard/EventCard';
 import User from '../../classes/User';
 import Event from '../../classes/Event';
@@ -21,7 +22,7 @@ export default function App() {
     }, []);
 
     const events = [
-        new Event('volleyball', 'Изумруд', '25 сентября 2020, 19:00', users, 14, 230),
+        new Event('volleyball', 'Изумруд, Чернышевского 17', '25 сентября 2020, 19:00', users, 12, 230),
         // new Event('volleyball', 'Колледж', '26 сентября 2020, 19:00', Array(12).fill(u1, 0, 12), 14, 200)
     ];
 
@@ -47,6 +48,7 @@ export default function App() {
 
     return (
         <div className="app-cont">
+            <Header></Header>
             <div className='event-cont'>
                 {eventCards}
             </div>

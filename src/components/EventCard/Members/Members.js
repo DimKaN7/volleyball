@@ -1,4 +1,5 @@
 import React from 'react';
+// import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import './Members.scss';
 
@@ -9,7 +10,7 @@ import {getImages, getIcon} from '../../../tools/tools';
 export default function Members(props) {
     const {members, maxMembers, deleteMember} = props;
 
-    const context = require.context('../../../icons/', false, /\.(png)$/);
+    const context = require.context('../../../icons/event/', false, /\.(png)$/);
     const iconsPaths = getImages(context);
     const mainMembers = members.slice(0, maxMembers);
 
@@ -17,7 +18,7 @@ export default function Members(props) {
         return (
             <div className='member' key={m.id}>
                 <span className='member-id'>{`${index}. `}</span>
-                <Marquee string={`${m.fName} ${m.sName}`}></Marquee>
+                <Marquee string={`${m.fName} ${m.sName}`} fontSize={16}></Marquee>
                 <img src={getIcon(iconsPaths, 'delete')} onClick={() => deleteMember(m.id)}></img>
             </div>
         );

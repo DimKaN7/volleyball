@@ -8,10 +8,13 @@ import Members from './Members/Members';
 
 export default function EventCard(props) {
     const {event, selected, id, onClick, deleteMember} = props;
-    console.log(event.members);
+    const style = {
+        height: event.maxMembers === 12 ? '479px' : '535px',
+    }
 
     return (
-        <div className={`card-cont${selected ? ' selected' : ''}`}>
+        <div className={`card-cont${selected ? ' selected' : ''}`}
+            style={selected ? style : null}>
             <CardTitle event={event}
                        onClick={onClick}
                        id={id}>                           
