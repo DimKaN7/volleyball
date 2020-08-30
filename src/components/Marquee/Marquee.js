@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled, {keyframes} from 'styled-components';
-import pixelWidth from 'string-pixel-width';
 
 import './Marquee.scss';
 
@@ -21,7 +20,7 @@ const MarqueeSpan = styled.span`
 `
 
 export default function Marquee(props) {
-    const {string, fontSize, width} = props;
+    const {string, width} = props;
 
     const [offset, setOffset] = useState(0);
     const contRef = useRef(null);
@@ -45,9 +44,8 @@ export default function Marquee(props) {
             const o = stringLength - contWidth > 0 ? contWidth - stringLength : 0; 
             setOffset(o);
         }
-
         return () => setOffset(0);
-    }, [width]);
+    }, [width, string]);
 
     return (
         <div className='marquee-cont' >

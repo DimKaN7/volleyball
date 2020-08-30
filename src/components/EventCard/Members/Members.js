@@ -1,25 +1,30 @@
 import React from 'react';
-// import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import {connect} from 'react-redux';
 
 import './Members.scss';
 
 import Marquee from '../../Marquee/Marquee';
+import {deleteMember} from '../../../actions/actions';
 
 import {getImages, getIcon} from '../../../tools/tools';
 
-export default function Members(props) {
+function Members(props) {
     const {members, maxMembers, deleteMember} = props;
 
     const context = require.context('../../../icons/event/', false, /\.(png)$/);
     const iconsPaths = getImages(context);
     const mainMembers = members.slice(0, maxMembers);
 
+    const onDelete = (index) => {
+        deleteMember(0, index);
+    }
+
     const memberTemplate = (m, index) => {
         return (
             <div className='member' key={m.id}>
                 <span className='member-id'>{`${index}. `}</span>
                 <Marquee string={`${m.fName} ${m.sName}`} fontSize={16}></Marquee>
-                <img src={getIcon(iconsPaths, 'delete')} onClick={() => deleteMember(m.id)}></img>
+                <img src={getIcon(iconsPaths, 'delete')} onClick={() => onDelete(index - 1)}></img>
             </div>
         );
     }
@@ -53,3 +58,15 @@ export default function Members(props) {
         </div>
     );
 }
+
+// const mapStateToProps = ({events}) => {
+//     return {
+//         events,
+//     }
+// }
+
+const mapDispatchToProps = {
+    deleteMember,
+};
+
+export default connect(null, mapDispatchToProps)(Members);

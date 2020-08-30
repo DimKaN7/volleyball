@@ -1,10 +1,26 @@
 export default class Event {
-    constructor(sport, location, time, members, maxMembers, payment) {
+    constructor(sport, location, 
+        time, members, maxMembers, payment) {
+        // this.id = id;
         this.sport = sport;
         this.location = location;
         this.time = time;
         this.members = members;
-        this.payment = payment;
         this.maxMembers = maxMembers;
+        this.payment = payment;
+    }
+
+    toObject = () => {
+        return (
+            {
+                // id: this.id,
+                sport: this.sport,
+                location: this.location,
+                time: this.time,
+                members: this.members,
+                maxMembers: this.maxMembers,
+                payment: this.payment,
+            }
+        )
     }
 }
