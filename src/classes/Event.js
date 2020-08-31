@@ -1,7 +1,7 @@
 export default class Event {
-    constructor(sport, location, 
+    constructor(id, sport, location, 
         time, members, maxMembers, payment) {
-        // this.id = id;
+        this.id = id;
         this.sport = sport;
         this.location = location;
         this.time = time;
@@ -13,7 +13,7 @@ export default class Event {
     toObject = () => {
         return (
             {
-                // id: this.id,
+                id: this.id,
                 sport: this.sport,
                 location: this.location,
                 time: this.time,

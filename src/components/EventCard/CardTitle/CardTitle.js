@@ -8,11 +8,7 @@ import {getImages, getIcon} from '../../../tools/tools';
 import {setSelectedEvent} from '../../../actions/actions';
 
 function CardTitle(props) {
-    // ивент обновляется только при перерисовке, и это правильно
-    // так как юзаю редакс
-    // при этом текущее колво участников будет обновляться только при перересовке компонента
-    // (при его свертке)
-    const {event, id, selectedEvent, setSelectedEvent} = props;
+    const {event, index, selectedEvent, setSelectedEvent} = props;
 
     const [width, setWidth] = useState(0);
 
@@ -32,13 +28,13 @@ function CardTitle(props) {
         const w = window.innerWidth;
         setWidth(w);
     }
-    const onClick = (id) => {
-        if (id === selectedEvent) setSelectedEvent(-1);
-        else setSelectedEvent(id);
+    const onClick = (index) => {
+        if (index === selectedEvent) setSelectedEvent(-1);
+        else setSelectedEvent(index);
     }
 
     return (
-        <div className='card-title' onClick={() => onClick(id)}>
+        <div className='card-title' onClick={() => onClick(index)}>
             <div className='card-info'>
                 <div className='card-info-part'>
                     <img src={getIcon(iconsPaths, 'location')}></img>
@@ -64,8 +60,9 @@ function CardTitle(props) {
     );
 }
 
-const mapStateToProps = ({selectedEvent}) => {
+const mapStateToProps = ({events, selectedEvent}) => {
     return {
+        events,
         selectedEvent
     }
 }

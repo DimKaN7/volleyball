@@ -7,7 +7,7 @@ import CardTitle from './CardTitle/CardTitle';
 import Members from './Members/Members';
 
 export default function EventCard(props) {
-    const {event, selected, id, clickEvents} = props;
+    const {event, selected, index} = props;
     const style = {
         height: event.maxMembers === 12 ? '479px' : '535px',
     }
@@ -15,8 +15,8 @@ export default function EventCard(props) {
     return (
         <div className={`card-cont${selected ? ' selected' : ''}`}
             style={selected ? style : null}>
-            <CardTitle event={event}
-                       id={id}>                           
+            <CardTitle index={index}
+                    event={event}>                           
             </CardTitle>
             <div className='members-wrapper'>
                 <CSSTransition
@@ -24,7 +24,8 @@ export default function EventCard(props) {
                     unmountOnExit
                     timeout={400}
                     classNames='members'>
-                        <Members members={event.members} 
+                        <Members eIndex={index}
+                                members={event.members} 
                                 maxMembers={event.maxMembers}></Members>
                 </CSSTransition>
             </div>

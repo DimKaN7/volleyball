@@ -16,6 +16,12 @@ export const setSelectedEvent = (id) => {
         payload: id,
     }
 } 
+export const addMember = (eId, member) => {
+    return {
+        type: 'ADD_MEMBER',
+        payload: {eId, member},
+    }
+}
 export const deleteMember = (eId, mId) => {
     return {
         type: 'DELETE_MEMBER',
